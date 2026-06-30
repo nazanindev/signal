@@ -210,6 +210,8 @@ export function ClusterCard({ cluster, prices = {}, entityToTicker = {}, maxScor
 
   async function fetchSummary() {
     if (summary) { setSummary(null); return }
+    // Demo mode: the snapshot carries a pre-written summary, so no backend call.
+    if (cluster.demo_summary) { setSummary(cluster.demo_summary); return }
     setLoadingSummary(true)
     try {
       const res = await fetch(`${API_URL}/api/clusters/${cluster.id}/summary`)

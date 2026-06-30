@@ -8,7 +8,7 @@ function timeStr(date) {
 }
 
 export default function App() {
-  const { clusters, prices, entityToTicker, loading, fromCache, lastUpdated, refresh } = useData()
+  const { clusters, prices, entityToTicker, loading, fromCache, demo, lastUpdated, refresh } = useData()
 
   // Thesis: leading-only clusters — the gap before news catches up
   const thesis = clusters.filter(c => c.signal_phase === 'thesis')
@@ -26,9 +26,18 @@ export default function App() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight">Signal</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-bold text-white tracking-tight">Signal</h1>
+            {demo && (
+              <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300/90 border border-amber-500/30">
+                sample data
+              </span>
+            )}
+          </div>
           <p className="text-xs text-zinc-600">
-            {loading && !lastUpdated ? 'Loading...' : fromCache ? `Cached ${timeStr(lastUpdated)}` : `Updated ${timeStr(lastUpdated)}`}
+            {demo
+              ? 'demo — not live'
+              : (loading && !lastUpdated ? 'Loading...' : fromCache ? `Cached ${timeStr(lastUpdated)}` : `Updated ${timeStr(lastUpdated)}`)}
             <span className="text-zinc-700"> · a calmer news feed</span>
           </p>
         </div>

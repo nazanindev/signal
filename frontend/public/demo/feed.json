@@ -1,0 +1,161 @@
+{
+  "_note": "Sample data for the public demo — a representative 'busy day'. Not live. Signal ages (_age_min) are hydrated to current time on load so the feed always looks fresh.",
+  "count": 8,
+  "clusters": [
+    {
+      "id": "demo-oklo",
+      "entities": ["Oklo"],
+      "tier": "emerging",
+      "score": 13.1,
+      "momentum": 2.6,
+      "signal_phase": "thesis",
+      "_thesis_age_min": 190,
+      "narrative": "Nuclear & Energy",
+      "dominant_layer": null,
+      "stale": false,
+      "leading_sources": ["jobs", "watcher"],
+      "confirming_sources": [],
+      "demo_summary": "Oklo is moving on leading signals only — a hiring spike plus a change to its NRC licensing page — with no news coverage yet, which is what puts it in the forming/thesis phase. The pattern is consistent with operational momentum ahead of a public catalyst rather than a reaction to one. There's no confirming reporting to corroborate it, so conviction is still low. Watch for a press release or filing that turns this into a confirmed story.",
+      "signals": [
+        {"source_type": "watcher", "title": "[CHANGED] NRC Advanced Reactor Licensing: 1 line added, 1 line removed", "url": "https://www.nrc.gov/reactors/new-reactors/advanced.html", "entities": ["Oklo"], "_age_min": 42, "diff_preview": "− Aurora powerhouse — pre-application readiness assessment in progress\n+ Aurora powerhouse — combined license application under formal review"},
+        {"source_type": "jobs", "title": "Oklo hiring velocity +50% — 88 open roles", "url": "https://oklo.com/careers", "entities": ["Oklo"], "_age_min": 240},
+        {"source_type": "stock", "title": "Oklo price move", "url": "https://finance.yahoo.com/quote/OKLO", "entities": ["OKLO"], "_age_min": 70}
+      ]
+    },
+    {
+      "id": "demo-nvidia",
+      "entities": ["Nvidia"],
+      "tier": "breaking",
+      "score": 58.2,
+      "momentum": 5.4,
+      "signal_phase": "confirming",
+      "_thesis_age_min": 560,
+      "narrative": "AI Infrastructure",
+      "dominant_layer": null,
+      "stale": false,
+      "leading_sources": ["sec", "jobs"],
+      "confirming_sources": ["news"],
+      "demo_summary": "Nvidia is lighting up across four unrelated sources at once — an insider purchase, a hiring surge, a price-and-volume move, and fresh coverage — which is the kind of multi-domain convergence that points toward something real rather than a single headline. The insider buy and hiring velocity led; the news caught up a few hours later. That sequence is consistent with a move that started before the story was written. Watch whether volume stays elevated and whether the coverage broadens beyond the initial outlets.",
+      "signals": [
+        {"source_type": "stock", "title": "Nvidia price move", "url": "https://finance.yahoo.com/quote/NVDA", "entities": ["NVDA"], "_age_min": 35},
+        {"source_type": "news", "title": "Nvidia unveils next-gen accelerator; cloud partners line up for capacity", "url": "https://techcrunch.com/", "entities": ["Nvidia"], "_age_min": 95},
+        {"source_type": "sec", "title": "Form 4: Director reports open-market purchase — Nvidia Corp", "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=NVDA", "entities": ["NVDA"], "_age_min": 180},
+        {"source_type": "jobs", "title": "Nvidia hiring velocity +63% — 1,240 open roles", "url": "https://www.nvidia.com/en-us/about-nvidia/careers/", "entities": ["Nvidia"], "_age_min": 300}
+      ]
+    },
+    {
+      "id": "demo-crypto",
+      "entities": ["Bitcoin", "Ethereum", "Solana"],
+      "tier": "breaking",
+      "score": 27.0,
+      "momentum": 3.1,
+      "signal_phase": "event",
+      "narrative": "Crypto",
+      "dominant_layer": null,
+      "stale": false,
+      "leading_sources": [],
+      "confirming_sources": [],
+      "demo_summary": "Bitcoin, Ethereum, and Solana are all moving together on elevated volume, which suggests a broad risk-on move across the asset class rather than anything token-specific. When the majors move in lockstep it's usually macro — liquidity, rates, or a flows headline — rather than a single project's news. There are no leading signals here, so this reads as a reaction, not a setup. Watch whether the move holds into the next session or fades as volume normalizes.",
+      "signals": [
+        {"source_type": "stock", "title": "Solana price move", "url": "https://www.coingecko.com/en/coins/solana", "entities": ["SOL"], "_age_min": 20},
+        {"source_type": "stock", "title": "Bitcoin price move", "url": "https://www.coingecko.com/en/coins/bitcoin", "entities": ["BTC"], "_age_min": 22},
+        {"source_type": "stock", "title": "Ethereum price move", "url": "https://www.coingecko.com/en/coins/ethereum", "entities": ["ETH"], "_age_min": 25}
+      ]
+    },
+    {
+      "id": "demo-anthropic-openai",
+      "entities": ["Anthropic", "OpenAI"],
+      "tier": "emerging",
+      "score": 22.7,
+      "momentum": 1.8,
+      "signal_phase": "confirming",
+      "narrative": "AI Infrastructure",
+      "dominant_layer": "model",
+      "stale": false,
+      "leading_sources": ["jobs", "arxiv"],
+      "confirming_sources": ["news"],
+      "demo_summary": "The frontier-model labs are surfacing together — parallel hiring pushes, new papers, and coverage — which points toward an industry-level beat rather than one company's announcement. Grouping both labs into one card reflects that the signals are about the model layer broadly. Conviction is moderate: the sources agree on the theme but not yet on a specific catalyst. Watch for a concrete release or funding event that splits this back into a single-name story.",
+      "signals": [
+        {"source_type": "news", "title": "Frontier labs race to ship longer-context, cheaper models", "url": "https://www.theverge.com/", "entities": ["Anthropic", "OpenAI"], "_age_min": 110},
+        {"source_type": "arxiv", "title": "Scaling laws for inference-time compute on reasoning tasks", "url": "https://arxiv.org/list/cs.LG/recent", "entities": ["AI"], "_age_min": 260},
+        {"source_type": "jobs", "title": "Anthropic hiring velocity +41% — 612 open roles", "url": "https://www.anthropic.com/careers", "entities": ["Anthropic"], "_age_min": 330}
+      ]
+    },
+    {
+      "id": "demo-coreweave",
+      "entities": ["CoreWeave"],
+      "tier": "emerging",
+      "score": 19.4,
+      "momentum": 2.3,
+      "signal_phase": "confirming",
+      "_thesis_age_min": 840,
+      "narrative": "AI Infrastructure",
+      "dominant_layer": null,
+      "stale": false,
+      "leading_sources": ["jobs", "sec"],
+      "confirming_sources": ["news"],
+      "demo_summary": "CoreWeave is showing the classic build-out pattern — hiring, a filing, a price move, and now news — consistent with capacity expansion in the GPU-cloud layer. The leading signals appeared roughly half a day before the coverage, so the story is catching up to the move. It's emerging rather than breaking because the score and source diversity clear the bar but momentum is steady, not explosive. Watch for a capacity or customer announcement as confirmation.",
+      "signals": [
+        {"source_type": "stock", "title": "CoreWeave price move", "url": "https://finance.yahoo.com/quote/CRWV", "entities": ["CRWV"], "_age_min": 55},
+        {"source_type": "news", "title": "CoreWeave expands data-center footprint to meet AI demand", "url": "https://www.reuters.com/technology/", "entities": ["CoreWeave"], "_age_min": 150},
+        {"source_type": "jobs", "title": "CoreWeave hiring velocity +58% — 305 open roles", "url": "https://www.coreweave.com/careers", "entities": ["CoreWeave"], "_age_min": 520},
+        {"source_type": "sec", "title": "Form 4: Officer acquisition reported — CoreWeave Inc", "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=CRWV", "entities": ["CRWV"], "_age_min": 600}
+      ]
+    },
+    {
+      "id": "demo-semis",
+      "entities": ["TSMC", "ASML"],
+      "tier": "emerging",
+      "score": 16.8,
+      "momentum": 1.4,
+      "signal_phase": "confirming",
+      "narrative": "Semiconductors",
+      "dominant_layer": "supply_chain",
+      "stale": false,
+      "leading_sources": ["sec"],
+      "confirming_sources": ["news"],
+      "demo_summary": "TSMC and ASML are moving together, which is typical when the signal is about the foundry supply chain rather than either company alone — they sit one step apart in the same pipeline. The shared 'supply chain' layer is why they merged into one card instead of two. Both have modest price moves backed by news, so this is a coherent sector read at moderate conviction. Watch capex commentary or export-policy headlines, which tend to move this pair in tandem.",
+      "signals": [
+        {"source_type": "news", "title": "Advanced-node demand pushes foundry capex guidance higher", "url": "https://www.bloomberg.com/technology", "entities": ["TSMC", "ASML"], "_age_min": 130},
+        {"source_type": "stock", "title": "TSMC price move", "url": "https://finance.yahoo.com/quote/TSM", "entities": ["TSM"], "_age_min": 65},
+        {"source_type": "stock", "title": "ASML price move", "url": "https://finance.yahoo.com/quote/ASML", "entities": ["ASML"], "_age_min": 80}
+      ]
+    },
+    {
+      "id": "demo-ftc",
+      "entities": ["FTC"],
+      "tier": "watch",
+      "score": 8.3,
+      "momentum": 1.1,
+      "signal_phase": "confirming",
+      "narrative": null,
+      "dominant_layer": null,
+      "stale": false,
+      "leading_sources": ["watcher"],
+      "confirming_sources": ["news"],
+      "demo_summary": "A watched FTC policy page changed and a news item landed alongside it, which together nudge this onto the watch list without rising to a major story. The page diff is small and specific — a single line about an enforcement action — so the change is real but narrow. It's 'watch' because the score and momentum are low. Worth keeping an eye on only if more sources pile onto the same thread.",
+      "signals": [
+        {"source_type": "watcher", "title": "[CHANGED] FTC Tech Policy: 1 line added, 1 line removed", "url": "https://www.ftc.gov/policy", "entities": ["FTC"], "_age_min": 48, "diff_preview": "− Latest: FTC Secures Agreement with Havas to Restore Competition — June 30, 2026\n+ Latest: FTC Files New Antitrust Complaint in Digital Advertising — July 1, 2026"},
+        {"source_type": "news", "title": "FTC opens new front in digital-advertising antitrust push", "url": "https://www.reuters.com/legal/", "entities": ["FTC"], "_age_min": 175}
+      ]
+    },
+    {
+      "id": "demo-ai",
+      "entities": ["AI"],
+      "tier": "watch",
+      "score": 6.2,
+      "momentum": 1.0,
+      "signal_phase": "confirming",
+      "narrative": "AI Infrastructure",
+      "dominant_layer": null,
+      "stale": false,
+      "leading_sources": ["arxiv"],
+      "confirming_sources": ["news"],
+      "demo_summary": "A broad 'AI' cluster from a couple of papers and a general news item — the kind of low-conviction background hum the feed deliberately keeps at the bottom. 'AI' is an umbrella entity, so it's down-weighted to avoid crowding out specific names. Nothing here points at a particular company or catalyst. It's here for completeness, not because it's actionable.",
+      "signals": [
+        {"source_type": "news", "title": "Enterprises move from AI pilots to production, survey finds", "url": "https://www.cnbc.com/technology/", "entities": ["AI"], "_age_min": 200},
+        {"source_type": "arxiv", "title": "A survey of agentic tool-use benchmarks", "url": "https://arxiv.org/list/cs.AI/recent", "entities": ["AI"], "_age_min": 410}
+      ]
+    }
+  ]
+}
