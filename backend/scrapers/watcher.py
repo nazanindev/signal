@@ -9,15 +9,34 @@ from cache import upsert_signal, get_url_snapshot, save_url_snapshot
 from scrapers.utils import extract_entities
 
 
+_BLOCK_CLOSE = re.compile(
+    r'<br\s*/?>'
+    r'|</(p|div|li|ul|ol|tr|td|th|dt|dd|h[1-6]|section|article|'
+    r'header|footer|nav|main|aside|table|thead|tbody|blockquote|pre)\s*>',
+    re.IGNORECASE,
+)
+
+
 def _strip_html(text: str) -> str:
-    """Remove scripts, styles, and HTML tags; collapse whitespace to readable plain text."""
+    """Remove scripts/styles/tags and return readable plain text, ONE LINE PER BLOCK.
+
+    Block-level boundaries (</p>, </li>, <br>, …) become newlines so a small edit
+    diffs to just the block that changed — otherwise the whole page collapses to a
+    single line and any one-character change reads as "entire page removed".
+    """
     text = re.sub(r'<script[^>]*>.*?</script>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
     text = re.sub(r'<style[^>]*>.*?</style>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    text = _BLOCK_CLOSE.sub('\n', text)
     text = re.sub(r'<[^>]+>', ' ', text)
     text = re.sub(r'&[a-zA-Z]+;', ' ', text)
     text = re.sub(r'&#\d+;', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
+    # Collapse spaces/tabs within each line but keep newlines; drop blank lines.
+    lines = []
+    for line in text.split('\n'):
+        line = re.sub(r'[^\S\n]+', ' ', line).strip()
+        if line:
+            lines.append(line)
+    return '\n'.join(lines)
 
 
 # Patterns that change on every request but carry no signal (UUIDs, reference IDs,
@@ -57,7 +76,7 @@ def fetch():
         label = item["label"]
         try:
             resp = httpx.get(url, timeout=15, follow_redirects=True,
-                             headers={"User-Agent": "Mozilla/5.0 (compatible; LifeDashboard/1.0)"})
+                             headers={"User-Agent": "Mozilla/5.0 (compatible; Signal/1.0)"})
 
             # Don't store or diff error pages — they'd poison the snapshot baseline
             if resp.status_code < 200 or resp.status_code >= 300:
@@ -93,13 +112,16 @@ def fetch():
             added_plain = [l[1:].strip() for l in plain_diff if l.startswith("+") and not l.startswith("+++")]
             removed_plain = [l[1:].strip() for l in plain_diff if l.startswith("-") and not l.startswith("---")]
 
+            def _clip(s: str, limit: int = 200) -> str:
+                return s if len(s) <= limit else s[:limit].rstrip() + "…"
+
             preview_lines = []
             for line in removed_plain[:3]:
                 if line:
-                    preview_lines.append(f"− {line}")
+                    preview_lines.append(f"− {_clip(line)}")
             for line in added_plain[:3]:
                 if line:
-                    preview_lines.append(f"+ {line}")
+                    preview_lines.append(f"+ {_clip(line)}")
             diff_preview = "\n".join(preview_lines) or None
 
             change_summary = f"{n_added} lines added, {n_removed} lines removed"
