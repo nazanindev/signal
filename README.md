@@ -12,6 +12,29 @@ It watches six things out of the box, no API keys needed: tech/business RSS, new
 
 > This is the engine extracted from a larger personal dashboard I run for myself — the convergence core, with my own feeds and verticals stripped out so it stands on its own.
 
+## The math
+
+Every signal is tagged with the entities it mentions. The correlator groups signals by entity inside a rolling window and scores each group:
+
+```
+score = Σ (weight · e^(−λ·hours_ago)) · novelty · intent
+```
+
+- **weight** — rarer, higher-intent sources count for more: an insider filing (10) outweighs a price move (6) outweighs a news article (2).
+- **e^(−λ·hours_ago)** — exponential time decay, so old signals fade instead of lingering (λ ≈ 0.04 → a signal is worth ~40% of its weight a day later).
+- **novelty** — `signal_count / 7-day baseline`, capped at 3×. An entity that's normally quiet spiking *now* counts for more than one that's always noisy.
+- **intent** — ×1.5 if any deliberately-tracked source (filings, prices, hiring, watched pages) is involved; ×0.4 if it's only ambient news/arXiv. This is what keeps the feed from filling up with headlines.
+
+Then **momentum** — recent vs. prior 6-hour score, Laplace-smoothed so a quiet window doesn't divide by ~zero:
+
+```
+momentum = (score_last_6h + k) / (score_prev_6h + k)
+```
+
+And a **tier**: *watch* once it clears the floor, *emerging* on enough score / source diversity / momentum, *breaking* when it's moving fast or spanning multiple domains (tech + finance + monitoring) at once. Clusters whose entities don't share a coherent sub-narrative get demoted, so unrelated things that happen to share a name don't fake a signal.
+
+All the constants live at the top of `backend/config.py`.
+
 ## Run it
 
 Backend:
