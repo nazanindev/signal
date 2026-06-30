@@ -2,7 +2,7 @@
 
 A calmer news feed.
 
-**[Live demo →](#)** *(sample data, no backend)*
+**[Live demo](https://signal-ruddy-two.vercel.app/)** *(sample data, no backend)*
 
 Most feeds show you everything and let the loudest thing win. Signal does the opposite: it stays quiet until **several independent sources land on the same thing at the same time**, and only then surfaces it.
 
